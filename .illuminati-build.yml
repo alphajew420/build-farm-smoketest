@@ -1,0 +1,13 @@
+version: 1
+os: linux
+image: ubuntu-24.04
+steps:
+  - echo "=== Illuminati Build Farm — hello ===" | tee artifact.txt
+  - date -u >> artifact.txt
+  - echo "kernel: $(uname -sr)" >> artifact.txt
+  - node -v >> artifact.txt
+  - python3 -V >> artifact.txt
+  - echo "build OK" >> artifact.txt
+artifacts:
+  - artifact.txt
+timeout: 600
