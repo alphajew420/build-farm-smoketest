@@ -1,14 +1,7 @@
-version: 1
 os: linux
 image: ubuntu-24.04
-steps:
-  - 'echo "=== Illuminati Build Farm ===" | tee artifact.txt'
-  - 'date -u >> artifact.txt'
-  - 'uname -sr >> artifact.txt'
-  - 'node -v >> artifact.txt'
-  - 'python3 -V >> artifact.txt'
-  - 'git --version >> artifact.txt'
-  - 'echo "build OK" >> artifact.txt'
-artifacts:
-  - artifact.txt
 timeout: 600
+steps:
+  - 'echo "marker=$ILLUMINATI_SECRET_TEST" > secret-check.txt'
+artifacts:
+  - "secret-check.txt"
