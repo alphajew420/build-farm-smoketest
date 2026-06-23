@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022
+timeout: 900
+steps:
+  - "powershell -NoProfile -Command \"1..15 | ForEach-Object { Start-Sleep -Seconds 10; ('tick ' + $_ + ' ' + (Get-Date).ToString('HH:mm:ss')) | Tee-Object -FilePath out.txt -Append }; 'DONE 150s' | Tee-Object -FilePath out.txt -Append\""
+artifacts:
+  - "out.txt"
