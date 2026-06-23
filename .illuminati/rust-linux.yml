@@ -1,0 +1,8 @@
+os: linux
+image: ubuntu-24.04-rust
+timeout: 600
+steps:
+  - "cargo --version && rustc --version && gcc --version | head -1"
+  - "cargo new hello && cd hello && cargo build --release && echo BUILT_OK"
+artifacts:
+  - "hello/target/release/hello"
