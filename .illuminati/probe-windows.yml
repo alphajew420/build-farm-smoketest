@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022
+timeout: 900
+steps:
+  - "powershell -NoProfile -ExecutionPolicy Bypass -File probe.ps1"
+artifacts:
+  - "probe.txt"

@@ -1,0 +1,7 @@
+os: linux
+image: ubuntu-24.04
+timeout: 600
+steps:
+  - "bash probe.sh"
+artifacts:
+  - "probe.txt"
