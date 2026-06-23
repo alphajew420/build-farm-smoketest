@@ -1,0 +1,6 @@
+os: linux
+image: ubuntu-24.04
+timeout: 300
+steps:
+  - 'echo "built via specPath=.illuminati/linux.yml" > out.txt'
+artifacts: ["out.txt"]
