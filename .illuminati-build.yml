@@ -1,14 +1,10 @@
-version: 1
 os: linux
 image: ubuntu-24.04
+timeout: 300
 steps:
-  - 'echo "=== Illuminati Build Farm ===" | tee artifact.txt'
-  - 'date -u >> artifact.txt'
-  - 'uname -sr >> artifact.txt'
-  - 'node -v >> artifact.txt'
-  - 'python3 -V >> artifact.txt'
-  - 'git --version >> artifact.txt'
-  - 'echo "build OK" >> artifact.txt'
+  - 'mkdir -p ~/.bcache && date +%s%N >> ~/.bcache/runs.txt'
+  - 'cp ~/.bcache/runs.txt runs.txt; echo "cache lines: $(wc -l < runs.txt)"'
+cache:
+  - "~/.bcache"
 artifacts:
-  - artifact.txt
-timeout: 600
+  - "runs.txt"
