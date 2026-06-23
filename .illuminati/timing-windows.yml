@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022
+timeout: 1800
+steps:
+  - "powershell -NoProfile -ExecutionPolicy Bypass -File timing.ps1"
+artifacts:
+  - "timing.txt"
