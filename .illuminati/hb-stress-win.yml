@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022
+timeout: 900
+steps:
+  - "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$e=(Get-Date).AddSeconds(240); 1..4 | ForEach-Object { Start-Job -ScriptBlock { param($end) while((Get-Date) -lt $end){ [void][math]::Pow(1.0001,100000) } } -ArgumentList $e } | Out-Null; while((Get-Date) -lt $e){ Start-Sleep 5 }; 'SURVIVED 240s CPU stress' | Tee-Object stress.txt\""
+artifacts:
+  - "stress.txt"
