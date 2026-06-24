@@ -1,0 +1,11 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 600
+steps:
+  - "echo LIBVAL=[%LIB%]"
+  - "echo INCVAL=[%INCLUDE%]"
+  - "where link.exe & where cl.exe"
+  - "if exist \"C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.22621.0\\um\\x64\\kernel32.lib\" (echo KERNEL32_PRESENT) else (echo KERNEL32_MISSING)"
+  - "cargo new app && cd app && set RUSTFLAGS=-Lnative=C:\\PleaseFail && cargo build --release 2>&1 & echo DIAGEND"
+artifacts:
+  - "app/target/release/app.exe"
