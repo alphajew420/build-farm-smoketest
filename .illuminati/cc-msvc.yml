@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 600
+steps:
+  - "cd ccprobe && cargo build --release && echo CC_BUILT_OK"
+artifacts:
+  - "ccprobe/target/release/ccprobe.exe"
