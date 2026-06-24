@@ -1,0 +1,7 @@
+os: linux
+image: ubuntu-24.04-rust
+timeout: 600
+steps:
+  - "cargo --version && cargo new app && cd app && cargo build --release && echo BUILT_OK"
+artifacts:
+  - "app/target/release/app"
