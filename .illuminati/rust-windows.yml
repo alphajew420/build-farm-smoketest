@@ -2,6 +2,6 @@ os: windows
 image: windows-2022
 timeout: 600
 steps:
-  - "curl.exe -sSfL -o %TEMP%\\ri.exe https://win.rustup.rs/x86_64 && %TEMP%\\ri.exe -y --default-host x86_64-pc-windows-gnu --default-toolchain stable --profile minimal && set PATH=%USERPROFILE%\\.cargo\\bin;%PATH% && cargo --version && rustc --version && cargo new app && cd app && cargo build --release && echo BUILT_OK"
+  - "curl.exe -sSfL -o %TEMP%\\rustup-init.exe https://win.rustup.rs/x86_64 && %TEMP%\\rustup-init.exe -y --default-host x86_64-pc-windows-gnu --default-toolchain stable --profile minimal && set PATH=%USERPROFILE%\\.cargo\\bin;%PATH% && cargo --version && rustc --version && cargo new app && cd app && cargo build --release && echo BUILT_OK"
 artifacts:
   - "app/target/release/app.exe"
