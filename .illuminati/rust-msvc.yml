@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 600
+steps:
+  - "rustc -vV && cargo new app && cd app && cargo build --release && echo BUILT_OK"
+artifacts:
+  - "app/target/release/app.exe"
