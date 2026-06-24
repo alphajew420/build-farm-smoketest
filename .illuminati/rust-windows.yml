@@ -1,8 +1,8 @@
 os: windows
-image: windows-2022-rust
+image: windows-2022
 timeout: 600
 steps:
-  - "cargo --version && rustc --version"
-  - "cargo new app && cd app && cargo build --release && echo BUILT_OK"
-artifacts:
-  - "app/target/release/app.exe"
+  # Install Rust (gnu, self-contained linking) + build in ONE cmd session so PATH carries.
+  # rustup-init downloads in ~12s on the build network; --default-toolchain stable avoids the
+  # "no default configured" error. No VS/MSVC needed with the gnu host.
+  - "curl.exe -sSfL -o %TEMP%\\ri.exe https://win.rustup.rs/x86_64 && %TEMP%\\ri.exe -y --default-host x86_64-pc-windows-gnu --default-toolchain stable --profile minimal && set PATH=%USERPROFILE%\\.cargo\\bin;%PATH% && cargo --version && rustc --version && cargo new app && cd app && cargo build --release && echo BUILT_OK"
