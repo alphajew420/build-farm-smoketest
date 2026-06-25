@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 600
+steps:
+  - "cd symrust && cargo run --release && echo RUST_SYM_DONE"
+artifacts:
+  - "symrust/real.txt"
