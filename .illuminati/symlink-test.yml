@@ -1,0 +1,9 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 600
+steps:
+  - "whoami /priv | findstr /i SymbolicLink & echo ---"
+  - "mkdir C:\\symtest 2>nul & echo real-content> C:\\symtest\\real.txt & powershell -NoProfile -Command \"try { New-Item -ItemType SymbolicLink -Path C:\\symtest\\link.txt -Target C:\\symtest\\real.txt -ErrorAction Stop | Out-Null; $i=Get-Item C:\\symtest\\link.txt; if($i.LinkType -eq 'SymbolicLink'){ Write-Output 'SYMLINK_OK' } else { Write-Output ('NOT_A_SYMLINK type='+$i.LinkType) } } catch { Write-Output ('SYMLINK_FAIL: '+$_.Exception.Message) }\""
+  - "echo DONE_DIAG"
+artifacts:
+  - "symtest/real.txt"
