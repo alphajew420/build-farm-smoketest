@@ -1,0 +1,7 @@
+os: windows
+image: windows-2022-msvc-rust
+timeout: 1200
+steps:
+  - "echo proof> proof.txt & echo sleeping-silently-700s & powershell -NoProfile -Command \"Start-Sleep -Seconds 700\" & echo SURVIVED_700S"
+artifacts:
+  - "proof.txt"
